@@ -1,6 +1,9 @@
 # vscode-python-docstrings
 An inspired vscode extentions for creating python docstring on new functions/methods.
 
+![Demostration](https://raw.githubusercontent.com/azaugg/vscode-python-docstring/master/usage.gif)
+
+
 ## Features:
  - Inspects function parameters and creates a params stub per param
 
