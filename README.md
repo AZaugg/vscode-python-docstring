@@ -24,4 +24,4 @@ An inspired vscode extentions for creating python docstring on new functions/met
  - If line underneeth a function definition is not empty you may yet badly formated docstring
 
 ## Mentions
-Thanks to the guys at [Microsoft](ttps://github.com/Microsoft/vscode-comment) for providing working code that I could bastardise to get this working.
+Thanks to the guys at [Microsoft](https://github.com/Microsoft/vscode-comment) for providing working code that I could bastardise to get this working.
