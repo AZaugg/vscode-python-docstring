@@ -28,3 +28,6 @@ An inspired vscode extentions for creating python docstring on new functions/met
 
 ## Mentions
 Thanks to the guys at [Microsoft](https://github.com/Microsoft/vscode-comment) for providing working code that I could bastardise to get this working.
+
+## Contributions
+Welcome
