@@ -36,12 +36,6 @@
         }
       }
     },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
     "devDependencies": {
         "typescript": "^2.0.3",
         "vscode": "^1.0.0",
