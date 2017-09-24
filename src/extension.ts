@@ -7,17 +7,30 @@ export class paramDeclaration {
 		}
 	}
 	
-export function getParameterText(paramList: paramDeclaration[], padding: string): string {
+export function getParameterText(paramList: paramDeclaration[], padding: string, docstyle: string): string {
 	var textToInsert: string = "";
 	textToInsert = textToInsert + '"""\n';
 	textToInsert = textToInsert + 'docstring here\n';
-	paramList.forEach(element => {
-		if (element.paramName != '') {
-			textToInsert = textToInsert + padding + ':param ';
-			textToInsert = textToInsert + element.paramName + ': \n';
-		}
-	});
+
+	if (docstyle == 'google') {
+		paramList.forEach(element => {
+			if (element.paramName != '') {
+				textToInsert = textToInsert + padding + ':param ';
+				textToInsert = textToInsert + element.paramName + ': \n';
+			}
+		});
+	}
+	else if (docstyle == 'numpy') {
+		textToInsert = textToInsert + '\nParameters';
+		textToInsert = textToInsert + '\n----------\n';
+		paramList.forEach(element => {
+			if (element.paramName != '') {
+				textToInsert = textToInsert + padding + element.paramName + ': \n';
+			}
+		});
+	}
 	textToInsert = textToInsert + '"""';
+
 	return textToInsert;
 }
 
@@ -120,6 +133,7 @@ export function activate(ctx:vscode.ExtensionContext) {
 			var params: paramDeclaration[] = getParameters(selectedText);
 
 			if (params.length > 0) {
+				var docstyle: string = vscode.workspace.getConfiguration().pydocs.style;
 				var spaces_enabled: boolean = vscode.window.activeTextEditor.options.insertSpaces;
 				var tabSize : number = vscode.window.activeTextEditor.options.tabSize;
 				var padding: string = ''
@@ -129,7 +143,7 @@ export function activate(ctx:vscode.ExtensionContext) {
 				else {
 					padding = '\t';
 				}
-				var textToInsert = getParameterText(params, padding);
+				var textToInsert = getParameterText(params, padding, docstyle);
 				vscode.window.activeTextEditor.edit((editBuilder: vscode.TextEditorEdit) => {
 
 					var pos:vscode.Position;

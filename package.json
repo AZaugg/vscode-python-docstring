@@ -2,7 +2,7 @@
     "name": "vscode-python-docstring",
     "displayName": "vscode-python-docstring",
     "description": "Create docstring for python methods",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "publisher": "azaugg",
     "engines": {
         "vscode": "^1.12.0"
@@ -20,7 +20,21 @@
           "command": "extension.addPyDocstring",
           "title": "Add Py Docstring"
         }
-      ]
+      ],
+      "configuration": {
+        "title": "PyDoc configs",
+        "properties": {
+            "pydocs.style": {
+                "type": "string",
+                "default": "google",
+                "enum": [
+                    "google",
+                    "numpy"
+                ],
+                "description": "Set the pydoc string type. google inspired or NumPy: default being google pydocs"
+            }
+        }
+      }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
