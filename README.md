@@ -16,9 +16,9 @@ An inspired vscode extentions for creating python docstring on new functions/met
 - Add Py Docstring
 
 ## General settings:
-|Name | Description
-|-----|------------
-|`pydocs.style`|Sets the doc style you want, currently supports [google](http://google.github.io/styleguide/pyguide.html#Comments) doc style and [numpy](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt) docstyle
+|Name | Description| Options
+|-----|------------|---------
+|`pydocs.style`|Sets the doc style you want, currently supports [google](http://google.github.io/styleguide/pyguide.html#Comments) doc style and [numpy](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt) docstyle| *google *numpy
 
 ## Things to do
  - Setup keyboard shortcuts
