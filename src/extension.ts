@@ -9,10 +9,10 @@ export class paramDeclaration {
 	
 export function getParameterText(paramList: paramDeclaration[], padding: string, docstyle: string): string {
 	var textToInsert: string = "";
-	textToInsert = textToInsert + '"""\n';
-	textToInsert = textToInsert + 'docstring here\n';
+	textToInsert = textToInsert + '"""';
 
 	if (docstyle == 'google') {
+		textToInsert = textToInsert + '\ndocstring here\n';
 		paramList.forEach(element => {
 			if (element.paramName != '') {
 				textToInsert = textToInsert + padding + ':param ';
@@ -21,13 +21,16 @@ export function getParameterText(paramList: paramDeclaration[], padding: string,
 		});
 	}
 	else if (docstyle == 'numpy') {
+        textToInsert = textToInsert + 'Set docstring here.\n';
 		textToInsert = textToInsert + '\nParameters';
 		textToInsert = textToInsert + '\n----------\n';
 		paramList.forEach(element => {
 			if (element.paramName != '') {
-				textToInsert = textToInsert + padding + element.paramName + ': \n';
+				textToInsert = textToInsert + element.paramName + ': \n';
 			}
 		});
+        textToInsert = textToInsert + '\nReturns\n';
+        textToInsert = textToInsert + '-------\n\n';
 	}
 	textToInsert = textToInsert + '"""';
 
