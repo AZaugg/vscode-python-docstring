@@ -2,7 +2,7 @@
     "name": "vscode-python-docstring",
     "displayName": "vscode-python-docstring",
     "description": "Create docstring for python methods",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "azaugg",
     "engines": {
         "vscode": "^1.12.0"
