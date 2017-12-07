@@ -32,6 +32,15 @@
                     "numpy"
                 ],
                 "description": "Set the pydoc string type. google inspired or NumPy: default being google pydocs"
+            },
+            "pydocs.ignoreParameters": {
+                "type": "array",
+                "default": [
+                    "object",
+                    "cls",
+                    "self"
+                ],
+                "description": "Set the pydoc ingored parameters. This parameters will be ignored when you create pydoc"
             }
         }
       }
