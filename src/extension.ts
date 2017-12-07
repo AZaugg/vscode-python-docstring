@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-var indentString = require('indent-string');
+import * as indentString from 'indent-string';
 
 export class paramDeclaration {
 		constructor(public paramName) {
@@ -7,13 +7,14 @@ export class paramDeclaration {
 		}
 	}
 	
-export function getParameterText(paramList: paramDeclaration[], padding: string, docstyle: string): string {
+export function getParameterText(paramList: paramDeclaration[], padding: string, docstyle: string, ignoreParameters: string[]): string {
 	var textToInsert: string = "";
 	textToInsert = textToInsert + '"""';
+	const paramsNeedDeclaration = paramList.filter(element => ignoreParameters.indexOf(element.paramName) === -1)
 
 	if (docstyle == 'google') {
 		textToInsert = textToInsert + '\ndocstring here\n';
-		paramList.forEach(element => {
+		paramsNeedDeclaration.forEach(element => {
 			if (element.paramName != '') {
 				textToInsert = textToInsert + padding + ':param ';
 				textToInsert = textToInsert + element.paramName + ': \n';
@@ -24,7 +25,7 @@ export function getParameterText(paramList: paramDeclaration[], padding: string,
         textToInsert = textToInsert + 'Set docstring here.\n';
 		textToInsert = textToInsert + '\nParameters';
 		textToInsert = textToInsert + '\n----------\n';
-		paramList.forEach(element => {
+		paramsNeedDeclaration.forEach(element => {
 			if (element.paramName != '') {
 				textToInsert = textToInsert + element.paramName + ': \n';
 			}
@@ -137,6 +138,7 @@ export function activate(ctx:vscode.ExtensionContext) {
 
 			if (params.length > 0) {
 				var docstyle: string = vscode.workspace.getConfiguration().pydocs.style;
+				var ignoreParameters: string[] = vscode.workspace.getConfiguration().pydocs.ignoreParameters;
 				var spaces_enabled: boolean = vscode.window.activeTextEditor.options.insertSpaces;
 				var tabSize : number = vscode.window.activeTextEditor.options.tabSize;
 				var padding: string = ''
@@ -146,7 +148,7 @@ export function activate(ctx:vscode.ExtensionContext) {
 				else {
 					padding = '\t';
 				}
-				var textToInsert = getParameterText(params, padding, docstyle);
+				var textToInsert = getParameterText(params, padding, docstyle, ignoreParameters);
 				vscode.window.activeTextEditor.edit((editBuilder: vscode.TextEditorEdit) => {
 
 					var pos:vscode.Position;
@@ -175,4 +177,3 @@ export function activate(ctx:vscode.ExtensionContext) {
 		}
 	});
 }
-
